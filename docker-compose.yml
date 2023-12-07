@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  webapp:
+    image: angelo87dock/gsweb-webapp
+    container_name: webapp
+    restart: "always"
+    environment:
+      - ASPNETCORE_ENVIRONMENT="production"
+      - ASPNETCORE_URLS=http://*:80
+    volumes:
+      - /docker/storage/storage-webapp/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 5200:80
+    networks:
+      - lan-network
+
+networks:
+  lan-network:
+    external:
+      name: docker-net
