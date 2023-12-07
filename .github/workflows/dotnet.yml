@@ -1,0 +1,30 @@
+name: .NET Build
+
+on:
+  # push:
+  #   branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  NET_VERSION: "6.0.x"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.1.0
+      # with:
+        # fetch-depth: 0
+    
+    - name: Setup .NET SDK ${{ env.NET_VERSION }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.NET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore
