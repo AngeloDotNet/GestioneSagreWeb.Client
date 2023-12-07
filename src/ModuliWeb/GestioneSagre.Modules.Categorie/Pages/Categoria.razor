@@ -1,0 +1,27 @@
+@* @page "/categoria" *@
+@page "/categoria/{idfesta:guid}"
+@page "/categoria/{id:guid}/{idfesta:guid}"
+
+<HeaderPage ItemsList="items" />
+
+<PageLayout PageTitle="Gestione Categoria">
+    <PageContent>
+        @if (errorMessage != null)
+        {
+            <MudPaper>
+                <MudText Color="Color.Error">@errorMessage</MudText>
+            </MudPaper>
+        }
+
+        @if (Id != Guid.Empty)
+        {
+            <FormEditCategoria IdDetail="Id" IdFesta="IdFesta" OnSave="UpdateCategoriaAsync" />
+        }
+        else
+        {
+            model.IdFesta = IdFesta;
+
+            <FormCategoria Model="model" OnSave="SaveCategoriaAsync" />
+        }
+    </PageContent>
+</PageLayout>

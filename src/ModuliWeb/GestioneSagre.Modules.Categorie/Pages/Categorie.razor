@@ -1,0 +1,48 @@
+@page "/categorie"
+
+<HeaderPage ItemsList="items" />
+
+<PageLayout PageTitle="Categorie">
+    <Toolbar>
+        <MudButtonGroup Color="Color.Inherit" Variant="Variant.Filled">
+            <NavButton Label="Nuova Categoria" IconButton="@Icons.Material.Filled.Add" Page="@nuovaCategoria" Disabled="@disableBtncategoria" />
+        </MudButtonGroup>
+    </Toolbar>
+    <PageContent>
+        @if (errorMessage != null)
+        {
+            <MudPaper>
+                <MudText Color="Color.Error">@errorMessage</MudText>
+                </MudPaper>
+        }
+        <MudPaper>
+            <MudTable Items="listItems" Loading="isLoading" LoadingProgressColor="Color.Primary">
+                <HeaderContent>
+                    <MudTh style="width:200px">Categoria Video</MudTh>
+                    <MudTh style="width:200px">Categoria Stampa</MudTh>
+                    <MudTh style="width:300px"></MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.CategoriaVideo</MudTd>
+                    <MudTd>@context.CategoriaStampa</MudTd>
+                    <MudTd>
+                        <MudButtonGroup Color="Color.Inherit" Variant="Variant.Outlined">
+                            <MudButton id="@($"modificaCategoria-{context.Id}")" OnClick="() => ModificaCategoriaAsync(context)"
+                                StartIcon="@Icons.Material.Filled.Edit" Style="margin-right:15px" Disabled="@disableBtnModificaCategoria">MODIFICA</MudButton>
+
+                            <MudButton id="@($"eliminaCategoria-{context.Id}")" OnClick="() => EliminaCategoriaAsync(context)"
+                                StartIcon="@Icons.Material.Filled.Delete" Disabled="@disableBtnEliminaCategoria">ELIMINA</MudButton>
+                        </MudButtonGroup>
+                    </MudTd>
+                </RowTemplate>
+                <NoRecordsContent>
+                    <MudText>Nessun dato disponibile</MudText>
+                </NoRecordsContent>
+                <LoadingContent>
+                    <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" />
+                </LoadingContent>
+            </MudTable>
+        </MudPaper>
+    </PageContent>
+</PageLayout>

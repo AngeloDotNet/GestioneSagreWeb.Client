@@ -1,0 +1,12 @@
+﻿<EditorForm TContent="CategoriaViewModel" Model="Model" Context="EditModel" OnSave="SubmitAsync" OnCancel="CancelAsync">
+    <ContentInfo>
+        <MudGrid Style="margin-bottom:30px">
+            <MudItem xs="12" md="3">
+                <MudTextField Label="Categoria Video" @bind-Value="Model.CategoriaVideo" For="@(() => Model.CategoriaVideo)" HelperText="@requiredField" Variant="Variant.Outlined" id="CategoriaVideo" />
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudTextField Label="Categoria Stampa" @bind-Value="Model.CategoriaStampa" For="@(() => Model.CategoriaStampa)" HelperText="@requiredField" Variant="Variant.Outlined" id="CategoriaStampa" />
+            </MudItem>
+        </MudGrid>
+    </ContentInfo>
+</EditorForm>
