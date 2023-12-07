@@ -2,8 +2,14 @@
 
 public static class FrontendParameters
 {
-    // Management of buttons
+    // Boolean parameters
     public const bool DISABLE_BUTTONS = true;
+
+    // Integer parameters
+    public const int NOTIFICATION_NUMBER = 0;
+
+    // String parameters
+    public const string TELEGRAM_SUPPORT = "https://t.me/CANALE-SUPPORTO-TELEGRAM";
 
     // Generic endpoints
     public const string ENDPOINT_GET_HELLOWORLD = "/helloworld/";
