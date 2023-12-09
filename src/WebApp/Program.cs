@@ -20,7 +20,7 @@ public class Program
                 config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
             });
 
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://api-gateway:5001") });
+        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://sagre-api.aepserver.it") });
 
         builder.Services.Scan(scan => scan.FromAssemblyOf<IConfigurazioneInizialeService>()
             .AddClasses(services => services.Where(type => type.Name.EndsWith("Service")))
