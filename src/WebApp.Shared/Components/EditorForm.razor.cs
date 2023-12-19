@@ -10,7 +10,7 @@ public partial class EditorForm<TContent>
     [Inject] public IDialogService Dialog { get; set; } = default!;
 
     private EditContext editContext;
-    private readonly bool disableBtnSave = FrontendParameters.DISABLE_BUTTONS; //true; //TODO: Se TRUE disabilita il salvataggio delle form
+    private readonly bool disableBtnSave = FrontendParameters.DISABLE_EDIT_BUTTONS;
 
     protected override void OnParametersSet()
     {

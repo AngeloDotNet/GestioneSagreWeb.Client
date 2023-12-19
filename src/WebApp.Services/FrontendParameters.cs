@@ -3,7 +3,7 @@
 public static class FrontendParameters
 {
     // Boolean parameters
-    public const bool DISABLE_BUTTONS = true;
+    public const bool DISABLE_EDIT_BUTTONS = true; //Se TRUE disabilita il salvataggio delle form
 
     // Integer parameters
     public const int NOTIFICATION_NUMBER = 0;
@@ -33,7 +33,8 @@ public static class FrontendParameters
     //Endpoint Module Categories
     public const string ENDPOINT_GET_CATEGORIE = "/getcategorie";
     public const string ENDPOINT_GET_CATEGORIA_ID = "/getcategoria";
+    public const string ENDPOINT_GET_CATEGORIA_IDFESTA = "/getidfesta";
     public const string ENDPOINT_POST_CATEGORIA = "/categoria";
     public const string ENDPOINT_PUT_CATEGORIA = "/categoria";
-    public const string EndPOINT_DELETE_CATEGORIA = "/categoria";
+    public const string ENDPOINT_DELETE_CATEGORIA = "/categoria";
 }
