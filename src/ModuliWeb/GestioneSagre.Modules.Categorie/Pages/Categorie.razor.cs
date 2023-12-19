@@ -21,6 +21,7 @@ public partial class Categorie
 
     private List<CategoriaViewModel> listItems = new();
     private string errorMessage;
+    private string nuovaCategoria;
 
     private Guid riferimentoIdFesta;
     private int countItems = 0;
@@ -29,14 +30,16 @@ public partial class Categorie
     private bool disableBtncategoria = false;
 
     private readonly bool disableBtnModificaCategoria = false;
-    private readonly bool disableBtnEliminaCategoria = FrontendParameters.DISABLE_BUTTONS; //true;
+    private readonly bool disableBtnEliminaCategoria = FrontendParameters.DISABLE_EDIT_BUTTONS;
 
     private async Task LoadDatiAsync()
     {
         try
         {
-            //TODO: Sostituire con chiamata async al microservizio OPERAZIONI AVVIO
-            riferimentoIdFesta = Guid.Parse("DD43C76F-0EBA-43D2-843A-C497CF80D6C9");
+            var idFestaAttiva = await Service.GetIdFestaAttivaAsync();
+
+            riferimentoIdFesta = Guid.Parse(idFestaAttiva);
+            nuovaCategoria = $"/categoria/{Guid.Parse(idFestaAttiva)}";
 
             isLoading = true;
             listItems = await Service.GetListaCategorie(riferimentoIdFesta);
@@ -65,9 +68,6 @@ public partial class Categorie
             isLoading = false;
         }
     }
-
-    //TODO: Sostituire con chiamata async al microservizio OPERAZIONI AVVIO
-    private string nuovaCategoria = $"/categoria/{Guid.Parse("DD43C76F-0EBA-43D2-843A-C497CF80D6C9")}";
 
     private void ModificaCategoriaAsync(CategoriaViewModel model)
         => Navigation.NavigateTo(errorMessage is null ? $"/categoria/{model.Id}/{model.IdFesta}" : "/categorie");

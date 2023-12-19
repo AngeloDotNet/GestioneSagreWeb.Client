@@ -24,11 +24,11 @@ public partial class ConfigurazioneIniziale
     private bool isLoading = false;
     private bool disableBtnFesta = false;
 
-    private readonly bool disableBtnAttivaFesta = FrontendParameters.DISABLE_BUTTONS; //true;
-    private readonly bool disableBtnDisattivaFesta = FrontendParameters.DISABLE_BUTTONS; //true;
+    private readonly bool disableBtnAttivaFesta = FrontendParameters.DISABLE_EDIT_BUTTONS;
+    private readonly bool disableBtnDisattivaFesta = FrontendParameters.DISABLE_EDIT_BUTTONS;
     private readonly bool disableBtnModificaFesta = false;
-    private readonly bool disableBtnTerminaFesta = FrontendParameters.DISABLE_BUTTONS; //true;
-    private readonly bool disableBtnEliminaFesta = FrontendParameters.DISABLE_BUTTONS; //true;
+    private readonly bool disableBtnTerminaFesta = FrontendParameters.DISABLE_EDIT_BUTTONS;
+    private readonly bool disableBtnEliminaFesta = FrontendParameters.DISABLE_EDIT_BUTTONS;
 
     private async Task LoadDatiAsync()
     {

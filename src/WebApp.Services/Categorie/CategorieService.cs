@@ -11,9 +11,10 @@ public class CategorieService : ICategorieService
 
     private readonly string endpointGetAllCategorie = FrontendParameters.ENDPOINT_GET_CATEGORIE;
     private readonly string endpointGetCategoriaByIdFesta = FrontendParameters.ENDPOINT_GET_CATEGORIA_ID;
+    private readonly string endpointGetIdFestaAttiva = FrontendParameters.ENDPOINT_GET_CATEGORIA_IDFESTA;
     private readonly string endpointPostCategoria = FrontendParameters.ENDPOINT_POST_CATEGORIA;
     private readonly string endpointPutCategoria = FrontendParameters.ENDPOINT_PUT_CATEGORIA;
-    private readonly string endpointDeleteCategoria = FrontendParameters.EndPOINT_DELETE_CATEGORIA;
+    private readonly string endpointDeleteCategoria = FrontendParameters.ENDPOINT_DELETE_CATEGORIA;
 
     public async Task<List<CategoriaViewModel>> GetListaCategorie(Guid idFesta)
     {
@@ -101,6 +102,24 @@ public class CategorieService : ICategorieService
         catch (HttpRequestException)
         {
             return 0;
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException(ex.Message);
+        }
+    }
+
+    public async Task<string> GetIdFestaAttivaAsync()
+    {
+        try
+        {
+            var result = await HttpClient.GetFromJsonAsync<string>($"{endpointGetIdFestaAttiva}") ?? string.Empty;
+
+            return result;
+        }
+        catch (HttpRequestException)
+        {
+            return string.Empty;
         }
         catch (Exception ex)
         {
