@@ -8,5 +8,4 @@ public interface ICategorieService
     Task<bool> UpdateCategoriaAsync(CategoriaInputModel model);
     Task<bool> DeleteCategoriaAsync(Guid id, Guid idFesta);
     Task<int> CountCategorieByIDFesta(Guid idFesta);
-    Task<string> GetIdFestaAttivaAsync();
 }
