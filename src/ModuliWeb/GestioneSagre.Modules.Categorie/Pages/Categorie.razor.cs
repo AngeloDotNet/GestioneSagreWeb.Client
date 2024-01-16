@@ -3,6 +3,8 @@
 public partial class Categorie
 {
     [Inject] public ICategorieService Service { get; set; }
+    [Inject] public IGenericoService GenericoService { get; set; }
+    [Inject] public ILocalStorageService LocalStorage { get; set; }
     [Inject] public NavigationManager Navigation { get; set; }
     [Inject] public ISnackbar Snackbar { get; set; }
 
@@ -36,7 +38,19 @@ public partial class Categorie
     {
         try
         {
-            var idFestaAttiva = await Service.GetIdFestaAttivaAsync();
+            var memoryIdFestaAttiva = await LocalStorage.GetItemAsync<string>("IdFestaAttiva");
+
+            if (memoryIdFestaAttiva == null)
+            {
+                memoryIdFestaAttiva = await GenericoService.GetIdFestaAttivaAsync();
+                await LocalStorage.SetItemAsync("IdFestaAttiva", memoryIdFestaAttiva);
+            }
+            else
+            {
+                memoryIdFestaAttiva = await LocalStorage.GetItemAsync<string>("IdFestaAttiva");
+            }
+
+            var idFestaAttiva = memoryIdFestaAttiva;
 
             riferimentoIdFesta = Guid.Parse(idFestaAttiva);
             nuovaCategoria = $"/categoria/{Guid.Parse(idFestaAttiva)}";
