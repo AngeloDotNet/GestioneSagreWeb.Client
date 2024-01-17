@@ -1,3 +1,6 @@
+using Blazored.LocalStorage;
+using GestioneSagre.Web.Services.Generico;
+
 namespace GestioneSagre.Web.App;
 
 public class Program
@@ -8,6 +11,7 @@ public class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
+        builder.Services.AddBlazoredLocalStorage();
         builder.Services.AddMudServices(config =>
             {
                 config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
@@ -23,7 +27,7 @@ public class Program
         var endpointAddress = $"http://{builder.Configuration["EndpointAPI:Default"]}";
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(endpointAddress) });
 
-        builder.Services.Scan(scan => scan.FromAssemblyOf<IConfigurazioneInizialeService>()
+        builder.Services.Scan(scan => scan.FromAssemblyOf<IGenericoService>()
             .AddClasses(services => services.Where(type => type.Name.EndsWith("Service")))
             .AsImplementedInterfaces()
             .WithTransientLifetime());
