@@ -2,11 +2,11 @@
 
 public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
 {
-    public HttpClient HttpClient { get; set; }
+    private readonly HttpClient httpClient;
 
     public ConfigurazioneInizialeService(HttpClient httpClient)
     {
-        this.HttpClient = httpClient;
+        this.httpClient = httpClient;
     }
 
     private readonly string endpointGetAllFeste = FrontendParameters.ENDPOINT_GET_FESTE;
@@ -27,7 +27,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
     {
         try
         {
-            var response = await HttpClient.GetFromJsonAsync<List<ConfigInizialeViewModel>>($"{endpointGetAllFeste}") ?? new();
+            var response = await httpClient.GetFromJsonAsync<List<ConfigInizialeViewModel>>($"{endpointGetAllFeste}") ?? new();
 
             return response;
         }
@@ -45,11 +45,11 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
     {
         try
         {
-            var resultFesta = await HttpClient.GetFromJsonAsync<FestaViewModel>($"{endpointGetFestaByIdFesta}/{id}") ?? new();
+            var resultFesta = await httpClient.GetFromJsonAsync<FestaViewModel>($"{endpointGetFestaByIdFesta}/{id}") ?? new();
 
             var idFesta = resultFesta.Id;
-            var resultIntestazione = await HttpClient.GetFromJsonAsync<IntestazioneViewModel>($"{endpointGetIntestazioneByIdFesta}/{idFesta}") ?? new();
-            var resultImpostazione = await HttpClient.GetFromJsonAsync<ImpostazioneViewModel>($"{endpointGetImpostazioneByIdFesta}/{idFesta}") ?? new();
+            var resultIntestazione = await httpClient.GetFromJsonAsync<IntestazioneViewModel>($"{endpointGetIntestazioneByIdFesta}/{idFesta}") ?? new();
+            var resultImpostazione = await httpClient.GetFromJsonAsync<ImpostazioneViewModel>($"{endpointGetImpostazioneByIdFesta}/{idFesta}") ?? new();
 
             var result = new ConfigInizialeViewModel()
             {
@@ -85,7 +85,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
 
     public async Task<bool> CreateNuovaFestaAsync(FestaInputModel model)
     {
-        var response = await HttpClient.PostAsJsonAsync($"{endpointPostFesta}", model);
+        var response = await httpClient.PostAsJsonAsync($"{endpointPostFesta}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -97,7 +97,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
 
     public async Task<bool> UpdateFestaAsync(FestaInputModel model)
     {
-        var response = await HttpClient.PutAsJsonAsync($"{endpointPutFesta}", model);
+        var response = await httpClient.PutAsJsonAsync($"{endpointPutFesta}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -111,7 +111,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
     #region "INTESTAZIONE"
     public async Task<bool> CreateNuovaIntestazioneAsync(IntestazioneInputModel model)
     {
-        var response = await HttpClient.PostAsJsonAsync($"{endpointPostIntestazione}", model);
+        var response = await httpClient.PostAsJsonAsync($"{endpointPostIntestazione}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -123,7 +123,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
 
     public async Task<bool> UpdateIntestazioneAsync(IntestazioneInputModel model)
     {
-        var response = await HttpClient.PutAsJsonAsync($"{endpointPutIntestazione}", model);
+        var response = await httpClient.PutAsJsonAsync($"{endpointPutIntestazione}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -137,7 +137,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
     #region "IMPOSTAZIONE"
     public async Task<bool> CreateNuovaImpostazioneAsync(ImpostazioneInputModel model)
     {
-        var response = await HttpClient.PostAsJsonAsync($"{endpointPostImpostazione}", model);
+        var response = await httpClient.PostAsJsonAsync($"{endpointPostImpostazione}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -149,7 +149,7 @@ public class ConfigurazioneInizialeService : IConfigurazioneInizialeService
 
     public async Task<bool> UpdateImpostazioneAsync(ImpostazioneInputModel model)
     {
-        var response = await HttpClient.PutAsJsonAsync($"{endpointPutImpostazione}", model);
+        var response = await httpClient.PutAsJsonAsync($"{endpointPutImpostazione}", model);
 
         if (!response.IsSuccessStatusCode)
         {
