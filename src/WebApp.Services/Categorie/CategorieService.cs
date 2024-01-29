@@ -2,11 +2,11 @@
 
 public class CategorieService : ICategorieService
 {
-    public HttpClient HttpClient { get; set; }
+    private readonly HttpClient httpClient;
 
     public CategorieService(HttpClient httpClient)
     {
-        this.HttpClient = httpClient;
+        this.httpClient = httpClient;
     }
 
     private readonly string endpointGetAllCategorie = FrontendParameters.ENDPOINT_GET_CATEGORIE;
@@ -19,7 +19,7 @@ public class CategorieService : ICategorieService
     {
         try
         {
-            var result = await HttpClient.GetFromJsonAsync<List<CategoriaViewModel>>($"{endpointGetAllCategorie}") ?? new();
+            var result = await httpClient.GetFromJsonAsync<List<CategoriaViewModel>>($"{endpointGetAllCategorie}") ?? new();
 
             var response = result.Where(x => x.IdFesta == idFesta).ToList();
 
@@ -39,7 +39,7 @@ public class CategorieService : ICategorieService
     {
         try
         {
-            var result = await HttpClient.GetFromJsonAsync<CategoriaViewModel>($"{endpointGetCategoriaByIdFesta}/{id}/{idFesta}") ?? new();
+            var result = await httpClient.GetFromJsonAsync<CategoriaViewModel>($"{endpointGetCategoriaByIdFesta}/{id}/{idFesta}") ?? new();
 
             return result;
         }
@@ -55,7 +55,7 @@ public class CategorieService : ICategorieService
 
     public async Task<bool> CreateNuovaCategoriaAsync(CategoriaInputModel model)
     {
-        var response = await HttpClient.PostAsJsonAsync($"{endpointPostCategoria}", model);
+        var response = await httpClient.PostAsJsonAsync($"{endpointPostCategoria}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -67,7 +67,7 @@ public class CategorieService : ICategorieService
 
     public async Task<bool> UpdateCategoriaAsync(CategoriaInputModel model)
     {
-        var response = await HttpClient.PutAsJsonAsync($"{endpointPutCategoria}", model);
+        var response = await httpClient.PutAsJsonAsync($"{endpointPutCategoria}", model);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -79,7 +79,7 @@ public class CategorieService : ICategorieService
 
     public async Task<bool> DeleteCategoriaAsync(Guid id, Guid idFesta)
     {
-        var response = await HttpClient.DeleteAsync($"{endpointDeleteCategoria}/{id}/{idFesta}");
+        var response = await httpClient.DeleteAsync($"{endpointDeleteCategoria}/{id}/{idFesta}");
 
         if (!response.IsSuccessStatusCode)
         {
@@ -93,7 +93,7 @@ public class CategorieService : ICategorieService
     {
         try
         {
-            var listaCategorie = await HttpClient.GetFromJsonAsync<List<CategoriaViewModel>>($"{endpointGetAllCategorie}") ?? new();
+            var listaCategorie = await httpClient.GetFromJsonAsync<List<CategoriaViewModel>>($"{endpointGetAllCategorie}") ?? new();
             var counter = listaCategorie.Where(c => c.IdFesta == idFesta).Count();
 
             return counter;
