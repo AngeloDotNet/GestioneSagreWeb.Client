@@ -5,3 +5,5 @@ global using GestioneSagre.Web.Models.Categorie.ViewModels;
 global using GestioneSagre.Web.Models.ConfigurazioneIniziale;
 global using GestioneSagre.Web.Models.ConfigurazioneIniziale.InputModels;
 global using GestioneSagre.Web.Models.ConfigurazioneIniziale.ViewModels;
+global using GestioneSagre.Web.Models.Prodotti.InputModels;
+global using GestioneSagre.Web.Models.Prodotti.ViewModels;
