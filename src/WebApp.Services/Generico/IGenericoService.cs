@@ -3,4 +3,5 @@
 public interface IGenericoService
 {
     Task<string> GetIdFestaAttivaAsync();
+    Task<List<CategoriaMinimalViewModel>> GetListCategorieAsync();
 }
