@@ -1,0 +1,51 @@
+﻿<EditorForm TContent="ProdottoViewModel" Model="Model" OnSave="SubmitAsync" OnCancel="CancelAsync">
+    <ContentInfo>
+        <MudGrid Style="margin-bottom:30px">
+            <MudItem xs="12" md="3">
+                <MudTextField Label="Descrizione" @bind-Value="Model.Descrizione" For="@(() => Model.Descrizione)" HelperText="@requiredField" Variant="Variant.Outlined" id="Descrizione" />
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudSelect Label="Categoria" @bind-Value="Model.IdCategoria" Variant="Variant.Outlined" id="categoria" HelperText="@requiredField">
+                    <MudSelectItem Value="Guid.Empty">Seleziona la categoria</MudSelectItem>
+                    @{
+                        foreach (var item in ListaCategorie)
+                        {
+                            <MudSelectItem Value="@item.Id">@item.CategoriaVideo</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudSwitch Label="Prodotto Attivo" Value="Model.ProdottoAttivo" ValueChanged="@(async (bool isChecked) => ChangeStatusProdottoAttivo(isChecked))" For="@(() => Model.ProdottoAttivo)" Variant="Variant.Outlined" Color="Color.Primary" id="ProdottoAttivo" />
+                <MudSwitch Disabled Label="Prenotazione" Value="Model.Prenotazione" ValueChanged="@(async (bool isChecked) => ChangeStatusPrenotazione(isChecked))" For="@(() => Model.Prenotazione)" Variant="Variant.Outlined" Color="Color.Primary" id="Prenotazione" />
+            </MudItem>
+        </MudGrid>
+        <MudDivider Style="margin-top:30px; margin-bottom:30px" />
+        <MudGrid Style="margin-bottom:30px">
+             <MudItem xs="12" md="3">
+                 <MudTextField Label="Prezzo" @bind-Value="Model.SinglePrezzo" For="@(() => Model.SinglePrezzo)" Placeholder="0,00" HelperText="@customField" Variant="Variant.Outlined" id="SinglePrezzo" />
+             </MudItem>
+             <MudItem xs="12" md="3">
+                 <MudSelect Label="Valuta" @bind-Value="EnumValue" Variant="Variant.Outlined" ReadOnly="true" id="prezzovaluta">
+                     @foreach (CurrencyValue item in Enum.GetValues(typeof(CurrencyValue)))
+                    {
+                        <MudSelectItem Value="@item">@item</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudItem>
+        </MudGrid>
+        <MudDivider Style="margin-top:30px; margin-bottom:30px" />
+        <MudGrid Style="margin-bottom:30px">
+            <MudItem xs="12" md="3">
+                <MudTextField Label="Quantità" @bind-Value="Model.Quantita" For="@(() => Model.Quantita)" HelperText="@requiredField" Variant="Variant.Outlined" id="Quantita" />
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudTextField Label="Quantità Scorta" @bind-Value="Model.QuantitaScorta" Disabled="@EnableScorta" For="@(() => Model.QuantitaScorta)" Variant="Variant.Outlined" id="QuantitaScorta" />
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudSwitch Label="Quantita Attiva" Value="Model.QuantitaAttiva" ValueChanged="@(async (bool isChecked) => ChangeStatusQuantitaAttiva(isChecked))" For="@(() => Model.QuantitaAttiva)" Variant="Variant.Outlined" Color="Color.Primary" id="QuantitaAttiva" />
+                <MudSwitch Label="Avviso Scorta" Value="Model.AvvisoScorta" Disabled="@EnableScorta" ValueChanged="@(async (bool isChecked) => ChangeStatusAvvisoScorta(isChecked))" For="@(() => Model.AvvisoScorta)" Variant="Variant.Outlined" Color="Color.Primary" id="AvvisoScorta" />
+             </MudItem>
+        </MudGrid>
+    </ContentInfo>
+</EditorForm>
