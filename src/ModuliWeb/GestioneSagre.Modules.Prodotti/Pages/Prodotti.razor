@@ -1,0 +1,72 @@
+﻿@page "/prodotti"
+
+<HeaderPage ItemsList="items" />
+
+<PageLayout PageTitle="Prodotti">
+    <Toolbar>
+        <MudButtonGroup Color="Color.Inherit" Variant="Variant.Filled">
+            <NavButton Label="Nuovo Prodotto" IconButton="@Icons.Material.Filled.Add" Page="@nuovoProdotto" Disabled="@disableBtnProdotto" />
+        </MudButtonGroup>
+    </Toolbar>
+    <PageContent>
+        @if (errorMessage != null)
+        {
+            <MudPaper>
+                <MudText Color="Color.Error">@errorMessage</MudText>
+            </MudPaper>
+        }
+        <MudPaper>
+            <MudTable Items="listItems" Loading="isLoading" LoadingProgressColor="Color.Primary">
+                <HeaderContent>
+                    <MudTh style="width:300px">Descrizione</MudTh>
+                    <MudTh style="width:100px">Quantit&agrave;</MudTh>
+                    <MudTh style="width:100px">Stato</MudTh>
+                    <MudTh style="width:100px">Prenotazione</MudTh>
+                    <MudTh style="width:300px"></MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.Descrizione</MudTd>
+                    <MudTd>@context.Quantita</MudTd>
+                    <MudTd>@{
+                        if (context.ProdottoAttivo)
+                        {
+                            <MudChip Color="Color.Success">ATTIVO</MudChip>
+                        }
+                        else
+                        {
+                            <MudChip Color="Color.Error">NON ATTIVO</MudChip>
+                        }
+                    }</MudTd>
+                    <MudTd>
+                        @{
+                            if (context.Prenotazione)
+                            {
+                                <MudChip Color="Color.Success">RICHIESTA</MudChip>
+                            }
+                            else
+                            {
+                                <MudChip Color="Color.Error">NON RICHIESTA</MudChip>
+                            }
+                        }
+                    </MudTd>
+                    <MudTd>
+                        <MudButtonGroup Color="Color.Inherit" Variant="Variant.Outlined">
+                            <MudButton id="@($"modificaProdotto-{context.Id}")" OnClick="() => ModificaProdottoAsync(context)"
+                                StartIcon="@Icons.Material.Filled.Edit" Style="margin-right:15px" Disabled="@disableBtnModificaProdotto">MODIFICA</MudButton>
+
+                            <MudButton id="@($"eliminaProdotto-{context.Id}")" OnClick="() => EliminaProdottoAsync(context)"
+                                StartIcon="@Icons.Material.Filled.Delete" Disabled="@disableBtnEliminaProdotto">ELIMINA</MudButton>
+                        </MudButtonGroup>
+                    </MudTd>
+                </RowTemplate>
+                <NoRecordsContent>
+                    <MudText>Nessun dato disponibile</MudText>
+                </NoRecordsContent>
+                <LoadingContent>
+                    <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" />
+                </LoadingContent>
+            </MudTable>
+        </MudPaper>
+    </PageContent>
+</PageLayout>
