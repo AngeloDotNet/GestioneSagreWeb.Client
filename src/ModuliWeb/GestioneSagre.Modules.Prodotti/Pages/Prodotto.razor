@@ -1,0 +1,26 @@
+﻿@page "/prodotto/{idfesta:guid}"
+@page "/prodotto/{id:guid}/{idfesta:guid}"
+
+<HeaderPage ItemsList="items" />
+
+<PageLayout PageTitle="Gestione Prodotto">
+    <PageContent>
+        @if (errorMessage != null)
+        {
+            <MudPaper>
+                <MudText Color="Color.Error">@errorMessage</MudText>
+            </MudPaper>
+        }
+
+        @if (Id != Guid.Empty)
+        {
+            <FormEditProdotto IdDetail="Id" IdFesta="IdFesta" OnSave="UpdateProdottoAsync" />
+        }
+        else
+        {
+            model.IdFesta = IdFesta;
+
+            <FormProdotto Model="model" OnSave="SaveProdottoAsync" />
+        }
+    </PageContent>
+</PageLayout>
