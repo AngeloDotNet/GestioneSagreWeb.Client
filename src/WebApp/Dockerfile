@@ -13,6 +13,7 @@ COPY ["src/WebApp.Models/GestioneSagre.Web.Models.csproj", "src/WebApp.Models/"]
 COPY ["src/ModuliWeb/GestioneSagre.Modules.Dashboard/GestioneSagre.Modules.Dashboard.csproj", "src/ModuliWeb/GestioneSagre.Modules.Dashboard/"]
 COPY ["src/ModuliWeb/GestioneSagre.Modules.ConfigurazioneIniziale/GestioneSagre.Modules.ConfigurazioneIniziale.csproj", "src/ModuliWeb/GestioneSagre.Modules.ConfigurazioneIniziale/"]
 COPY ["src/ModuliWeb/GestioneSagre.Modules.Categorie/GestioneSagre.Modules.Categorie.csproj", "src/ModuliWeb/GestioneSagre.Modules.Categorie/"]
+COPY ["src/ModuliWeb/GestioneSagre.Modules.Prodotti/GestioneSagre.Modules.Prodotti.csproj", "src/ModuliWeb/GestioneSagre.Modules.Prodotti/"]
 
 RUN dotnet restore "src/WebApp/GestioneSagre.Web.App.csproj"
 COPY . .
