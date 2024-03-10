@@ -28,6 +28,14 @@ public class AppBase : ComponentBase, IDisposable
                         break;
                     }
 
+                case "prodotti":
+                    {
+                        var assemblies = await AssemblyLoader.LoadAssembliesAsync(new[] { "GestioneSagre.Modules.Prodotti.dll" });
+                        LazyLoadedAssemblies.AddRange(assemblies);
+
+                        break;
+                    }
+
                 default:
                     {
                         var assemblies = await AssemblyLoader.LoadAssembliesAsync(new[] { "GestioneSagre.Modules.Dashboard.dll" });
