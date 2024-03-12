@@ -37,13 +37,13 @@
         <MudDivider Style="margin-top:30px; margin-bottom:30px" />
         <MudGrid Style="margin-bottom:30px">
             <MudItem xs="12" md="3">
-                <MudTextField Label="Quantità" @bind-Value="Model.Quantita" For="@(() => Model.Quantita)" HelperText="@requiredField" Variant="Variant.Outlined" id="Quantita" />
+                <MudTextField Label="Quantit&agrave;" @bind-Value="Model.Quantita" For="@(() => Model.Quantita)" HelperText="@requiredField" Variant="Variant.Outlined" id="Quantita" />
             </MudItem>
             <MudItem xs="12" md="3">
-                <MudTextField Label="Quantità Scorta" @bind-Value="Model.QuantitaScorta" Disabled="@EnableScorta" For="@(() => Model.QuantitaScorta)" Variant="Variant.Outlined" id="QuantitaScorta" />
+                <MudTextField Label="Quantit&agrave; Scorta" @bind-Value="Model.QuantitaScorta" Disabled="@EnableScorta" For="@(() => Model.QuantitaScorta)" Variant="Variant.Outlined" id="QuantitaScorta" />
             </MudItem>
             <MudItem xs="12" md="3">
-                <MudSwitch Label="Quantita Attiva" Value="Model.QuantitaAttiva" ValueChanged="@(async (bool isChecked) => ChangeStatusQuantitaAttiva(isChecked))" For="@(() => Model.QuantitaAttiva)" Variant="Variant.Outlined" Color="Color.Primary" id="QuantitaAttiva" />
+                <MudSwitch Label="Quantit&agrave; Attiva" Value="Model.QuantitaAttiva" ValueChanged="@(async (bool isChecked) => ChangeStatusQuantitaAttiva(isChecked))" For="@(() => Model.QuantitaAttiva)" Variant="Variant.Outlined" Color="Color.Primary" id="QuantitaAttiva" />
                 <MudSwitch Label="Avviso Scorta" Value="Model.AvvisoScorta" Disabled="@EnableScorta" ValueChanged="@(async (bool isChecked) => ChangeStatusAvvisoScorta(isChecked))" For="@(() => Model.AvvisoScorta)" Variant="Variant.Outlined" Color="Color.Primary" id="AvvisoScorta" />
              </MudItem>
         </MudGrid>
