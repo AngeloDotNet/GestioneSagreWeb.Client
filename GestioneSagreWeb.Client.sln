@@ -28,8 +28,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 		global.json = global.json
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestioneSagre.Modules.Prodotti", "src\ModuliWeb\GestioneSagre.Modules.Prodotti\GestioneSagre.Modules.Prodotti.csproj", "{A75759BA-40C9-4CAD-A2A8-9F24EBB0E59E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +68,10 @@ Global
 		{7E6C0104-A433-4DD9-B855-9EF29D380C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E6C0104-A433-4DD9-B855-9EF29D380C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E6C0104-A433-4DD9-B855-9EF29D380C91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A75759BA-40C9-4CAD-A2A8-9F24EBB0E59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A75759BA-40C9-4CAD-A2A8-9F24EBB0E59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A75759BA-40C9-4CAD-A2A8-9F24EBB0E59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A75759BA-40C9-4CAD-A2A8-9F24EBB0E59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +84,7 @@ Global
 		{37E650C7-CF9C-425C-B1B7-57EC5AE608BD} = {8F3261E6-BDFD-483B-AACB-F4F02E276A39}
 		{C93C25BC-C916-4BE7-A3A6-718A3FB82C06} = {8F3261E6-BDFD-483B-AACB-F4F02E276A39}
 		{7E6C0104-A433-4DD9-B855-9EF29D380C91} = {8F3261E6-BDFD-483B-AACB-F4F02E276A39}
+		{A75759BA-40C9-4CAD-A2A8-9F24EBB0E59E} = {8F3261E6-BDFD-483B-AACB-F4F02E276A39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {247C0BB0-C420-4621-B01D-88555D92B080}
